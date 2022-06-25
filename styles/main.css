@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body {
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  font-family: "Open Sans";
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  width: 100%;
+  height: clamp(290px, 240px + 15.6vw, 540px);
+  background-image: url("/img/photo1.jpg");
+  background-size: cover;
+  color: #fff;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1366px;
+  text-align: center;
+}
+.navigation .logoo {
+  width: clamp(210px, 182px + 8.8vw, 350px);
+}
+.nav__item {
+  text-align: center;
+  font-weight: bold;
+}
+.nav__item:not(:last-child) {
+  margin-right: 80px;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+}
+.hero__text {
+  display: inline-block;
+  font-size: clamp(30px, 12px + 5.6vw, 120px);
+  font-weight: 800;
+}
+
+/*# sourceMappingURL=main.css.map */
