@@ -3,11 +3,11 @@ session_start();
 $server = 'localhost';
 $user = 'root';
 $password = '';
-$db = 'registration_itco';
+$db_name = 'registration_itco';
  
-$db = mysqli_connect($server, $user, $password, $db);
+$db = new mysqli($server, $user, $password, $db_name);
  
-if (!$db) {
+if ($db->connect_error) {
     echo "Не удается подключиться к серверу базы данных!";
     exit;
 }

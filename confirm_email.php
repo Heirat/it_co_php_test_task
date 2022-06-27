@@ -9,19 +9,20 @@ $show_form = False;
 if ($_GET['email_hash']) {
     $_SESSION['email_hash'] = $_GET['email_hash'];
 
-    if ($result = mysqli_query($db, "SELECT `id`, `password`, `confirmed_email` FROM `users` WHERE `email_hash`='" . $_SESSION['email_hash'] . "'")) {
-        if ($result->num_rows === 0) {
+    $db_email = $db->query("SELECT `id`, `password`, `confirmed_email` FROM `users` WHERE `email_hash`='" . $_SESSION['email_hash'] . "'");
+    if ($db_email) {
+        if ($db_email->num_rows === 0) {
             $reg_msg = "Такой email не зарегистрирован. Введите свой email на главной странице.";
             header("Refresh: 1; URL=http://it-co/index.php");
         } else {
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $db_email->fetch_assoc()) {
                 // Сообщение по-умолчанию
                 $reg_msg = "Email подтверждён";
                 $show_form = True;
 
                 // Если email еще не подтвержден, то подтверждаем
                 if ($row['confirmed_email'] == 1) {
-                    mysqli_query($db, "UPDATE `users` SET `confirmed_email` = 0 WHERE `id`=" . $row['id']);
+                    $db->query("UPDATE `users` SET `confirmed_email` = 0 WHERE `id`=" . $row['id']);
                 }
 
                 // Если пароль был добавлен

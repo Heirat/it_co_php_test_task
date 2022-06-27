@@ -10,7 +10,7 @@ if (isset($_POST['password'])) {
 
 		$_SESSION['password'] = $password;
 
-		mysqli_query($db, "UPDATE `users` SET `password` = '". $password ."' WHERE `email_hash`='". $_SESSION['email_hash'] ."'");
+		$db->query("UPDATE `users` SET `password` = '". $password ."' WHERE `email_hash`='". $_SESSION['email_hash'] ."'");
 
 		$reg_msg = "Вы успешно зарегистрированы!";		
 	} else {
