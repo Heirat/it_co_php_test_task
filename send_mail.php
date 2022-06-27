@@ -14,8 +14,8 @@ if (isset($_POST['send'])) {
 
     // Если ошибок нет, то отправляем письмо
     if (!$msg) {
-        $email = $_POST['email'];
-        $email_hash = md5($email . time());
+        $email = $db->real_escape_string($_POST['email']);
+        $email_hash = $db->real_escape_string(md5($email . time()));
 
         // Проверяем, что такой email не был добавлен в бд ранее
         $result = $db->query("SELECT `id` FROM `users` WHERE `email`='" . $email . "'");

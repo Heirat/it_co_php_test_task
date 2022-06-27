@@ -5,11 +5,11 @@ $db = $_SESSION['db'];
 
 $show_form = False;
 
-
 if ($_GET['email_hash']) {
-    $_SESSION['email_hash'] = $_GET['email_hash'];
+    $email_hash = $db->real_escape_string($_GET['email_hash']);
+    $_SESSION['email_hash'] = $email_hash;
 
-    $db_email = $db->query("SELECT `id`, `password`, `confirmed_email` FROM `users` WHERE `email_hash`='" . $_SESSION['email_hash'] . "'");
+    $db_email = $db->query("SELECT `id`, `password`, `confirmed_email` FROM `users` WHERE `email_hash`='" . $email_hash . "'");
     if ($db_email) {
         if ($db_email->num_rows === 0) {
             $reg_msg = "Такой email не зарегистрирован. Введите свой email на главной странице.";

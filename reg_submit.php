@@ -6,7 +6,7 @@ $db = $_SESSION['db'];
 // Обработка отправки формы Зарегистрироваться
 if (isset($_POST['password'])) {
 	if (isset($_SESSION['email_hash'])) {
-		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		$password = $db->real_escape_string(password_hash($_POST['password'], PASSWORD_DEFAULT));
 
 		$_SESSION['password'] = $password;
 
